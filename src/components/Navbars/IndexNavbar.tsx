@@ -1,14 +1,19 @@
 'use client';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Dropdown from '../Dropdowns/IndexDropdown';
 
 type Props = {};
 
 export default function IndexNavbar({}: Props) {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const pathname = usePathname();
+  if (pathname?.includes('/admin')) {
+    return <></>;
+  }
   return (
-    <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
+    <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-transparent shadow">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <Link

@@ -1,22 +1,27 @@
-import Navbar from '@/components/Navbars/IndexNavbar';
-import '@/styles/tailwind.css';
+import FooterAdmin from '@/components/Footers/FooterAdmin';
+import AdminNavbar from '@/components/Navbars/AdminNavbar';
+import Sidebar from '@/components/Sidebar/Sidebar';
+import React, { ReactNode } from 'react';
 import './globals.css';
+import '../styles/tailwind.css';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+type Props = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
       <body>
-        <Navbar />
-        {children}
+        <Sidebar />
+        <div className="relative md:ml-64 bg-blueGray-100">
+          <AdminNavbar />
+          <div className="px-4 md:px-10 mx-auto w-full">
+            {children}
+            <FooterAdmin />
+          </div>
+        </div>
       </body>
     </html>
   );
